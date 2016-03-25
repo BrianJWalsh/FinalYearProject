@@ -1,0 +1,79 @@
+﻿html {
+    color: #DDD;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    padding: 2%;
+    width: 95%;
+    top: 0;
+    bottom: 0;
+    background-color: #262626;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*.logo*/ {
+    background: url(../Content/Images/logo.png) no-repeat top left;
+    display: block;
+    width: 700px;
+    height: 200px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+body:not(.full-body) {
+    background-image: url('http://i.imgur.com/12mMcvF.png?1');
+    background-repeat: repeat;
+}
+
+#main {
+    margin-top: 10%;
+}
+
+
+.website-heading {
+    font-size: 700%;
+}
+
+.Search .btn {
+    height: 82px;
+    font-size: 36pt;
+}
+
+.Search input {
+    height: 82px;
+    font-size: 36pt;
+    max-width: 100% !important;
+}
+
+.Search {
+    padding: 10% 0;
+    margin: 0% 0;
+}
+
+#cheapestItemTable {
+    font-size: 150%;
+}
+
+    #cheapestItemTable td:nth-child(5) {
+        color: #187e3d;
+    }

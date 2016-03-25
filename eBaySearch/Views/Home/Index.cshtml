@@ -1,0 +1,128 @@
+﻿@model IEnumerable<eBaySearch.Finding.SearchItem>
+    @{
+        ViewBag.Title = "Search eBay";
+    }
+    <h2 style="text-align:center">
+        eBay Search
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+
+            <div class="row">
+                <div class="col-lg-8 col-lg-push-2">
+                    <div class="input-group Search">
+                        <input id="Id" class="form-control Search" name="Id" type="text" maxlength="150" value="@ViewBag.Message" />
+                        <span class="input-group-btn">
+                            <input class="btn-primary btn searchButton" name="SearchButton" type="submit" value="Go!" onclick="myFunction" /><a href="#" onclick="$('#Id').val('')"> Clear</a>
+                        </span>
+                    </div><!-- /input-group -->
+                </div>
+            </div>
+
+        }
+    </h2>
+
+    @if (Model != null)
+    {
+        <text>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#searchResults").tablesorter({ sortList: [[0, 0], [4, 0]] });
+                    // var cheapestItem = "<table>";
+                    var cheapestItem = $("#searchResults tbody tr:first-child");
+                    // cheapestItem += "</table>"
+                    $("#cheapestItemTable").append(cheapestItem);
+
+                });
+            </script>
+            <div id="">
+                <h2>This is the cheapest item of your search</h2>
+                <table id="cheapestItemTable" class="table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Item Description</th>
+                            <th>Category</th>
+                            <th>Location</th>
+                            <th>Price</th>
+                            <th>Shipping</th>
+                        </tr>
+                </table>
+
+            </div>
+            <div class="table-responsive">
+                <table id="searchResults" class="table table-bordered tablesorter">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Item Description</th>
+                            <th>Category</th>
+                            <th>Location</th>
+                            <th>Price</th>
+                            <th>Shipping</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var seller in Model.GroupBy(i => i.sellingStatus.currentPrice.Value).OrderByDescending(i => i.Count()))
+                        {
+                            foreach (var item in Model.Where(i => i.sellingStatus.currentPrice.Value == @seller.Key).Take(4))
+                            {
+                                <tr>
+                                    <td class="itemimg">
+                                        <img alt="no image" height="90" src="@item.galleryURL" />
+                                    </td>
+                                    <td>
+                                        <a href="@item.viewItemURL" target="_blank">@item.title </a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.primaryCategory.categoryName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.location)
+                                    </td>
+                                    <td>
+                                        £@Html.DisplayFor(modelItem => item.sellingStatus.currentPrice.Value)
+                                    </td>
+                                    <td>
+                                        @{var shippingCost = @Html.DisplayFor(modelItem => item.shippingInfo.shippingServiceCost.Value);
+                                            var originalCost = @Html.DisplayFor(modelItem => item.sellingStatus.currentPrice.Value);
+                                            //var test = shippingCost.toString();
+                                        }
+
+
+                                        @Html.DisplayFor(modelItem => item.shippingInfo.shippingServiceCost.Value)
+
+
+                                    </td>
+
+                                    @*   @foreach (var price in Model.GroupBy(i => i.sellingStatus.currentPrice.Value).OrderByDescending(i => i.Count()))
+                                        {
+
+                                        }*@
+                                </tr>
+                                                }
+
+                                            }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </text>
+
+                                            }
+                                            @*If no items are found inform user*@
+
+                                            @{
+                                                var result = Request["SearchButton"];
+                                            }
+                                            @if (result == null)
+                                            {
+                                                <div>
+                                                    button clicked
+                                                </div>
+
+                                                if (Model == null)
+                                                {
+                                                    <div id="noResult">No result</div>
+                                                }
+                                            }
