@@ -77,3 +77,7 @@ body:not(.full-body) {
     #cheapestItemTable td:nth-child(5) {
         color: #187e3d;
     }
+
+.validation-summary-errors li{
+    color:red;
+}

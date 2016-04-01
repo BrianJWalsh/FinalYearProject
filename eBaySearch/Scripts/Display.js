@@ -4,7 +4,7 @@
     var cheapestItem = $("#searchResults tbody tr:first-child");
     // cheapestItem += "</table>"
     $("#cheapestItemTable").append(cheapestItem);
-    alert("Test")
+    //alert("Test")
     $(calculatePrice);
 });
 

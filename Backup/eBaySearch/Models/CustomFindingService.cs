@@ -14,12 +14,12 @@ namespace eBaySearch.Models
         //    try
         //    {
         //        HttpWebRequest request = (HttpWebRequest)base.(uri);
-        //        request.Headers.Add("X-EBAY-SOA-SECURITY-APPNAME", "BrianWal-f6d8-43f7-80f0-854c2a33aded");
+        //        request.Headers.Add("X-EBAY-SOA-SECURITY-APPNAME", "W3Portal-00d0-4af0-a2fc-0bdc68668695");
         //        request.Headers.Add("X-EBAY-SOA-OPERATION-NAME", "findItemsByKeywords");
         //        request.Headers.Add("X-EBAY-SOA-SERVICE-NAME", "FindingService");
         //        request.Headers.Add("X-EBAY-SOA-MESSAGE-PROTOCOL", "SOAP11");
         //        request.Headers.Add("X-EBAY-SOA-SERVICE-VERSION", "1.0.0");
-        //        request.Headers.Add("X-EBAY-SOA-GLOBAL-ID", "EBAY-IE");
+        //        request.Headers.Add("X-EBAY-SOA-GLOBAL-ID", "EBAY-US");
         //        return request;
         //    }
         //    catch (Exception ex)

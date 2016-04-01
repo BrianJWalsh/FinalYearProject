@@ -96,8 +96,12 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ClientFactory.cs" />
-    <Compile Include="Models\CustomFindingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\AmazonItemSearch\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\Finding\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -145,6 +149,7 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Display.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -157,6 +162,34 @@
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
+    <None Include="Service References\AmazonItemSearch\AWSECommerceService.wsdl" />
+    <Content Include="Service References\AmazonItemSearch\eBaySearch.AmazonItemSearch.BrowseNodeLookupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\AmazonItemSearch\eBaySearch.AmazonItemSearch.CartAddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\AmazonItemSearch\eBaySearch.AmazonItemSearch.CartClearResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\AmazonItemSearch\eBaySearch.AmazonItemSearch.CartCreateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\AmazonItemSearch\eBaySearch.AmazonItemSearch.CartGetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\AmazonItemSearch\eBaySearch.AmazonItemSearch.CartModifyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\AmazonItemSearch\eBaySearch.AmazonItemSearch.ItemLookupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\AmazonItemSearch\eBaySearch.AmazonItemSearch.ItemSearchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\AmazonItemSearch\eBaySearch.AmazonItemSearch.SimilarityLookupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\Finding\configuration91.svcinfo">
       <SubType>Designer</SubType>
     </None>
@@ -200,6 +233,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\AmazonItemSearch\configuration91.svcinfo" />
+    <None Include="Service References\AmazonItemSearch\configuration.svcinfo" />
+    <None Include="Service References\AmazonItemSearch\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -233,8 +272,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Views\Home\ViewPage1.cshtml" />
-    <Content Include="Views\Home\SellerItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -246,6 +283,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AmazonItemSearch\" />
     <WCFMetadataStorage Include="Service References\Finding\" />
   </ItemGroup>
   <ItemGroup>

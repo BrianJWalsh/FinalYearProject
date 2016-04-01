@@ -6,24 +6,38 @@ using System.Web.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.ServiceModel;
+
+//eBay service reference
 using eBaySearch.Models;
 using eBaySearch.Finding;
 using eBaySearch.Services.Common;
 using eBaySearch.Services;
+
+//Amazon service reference
+using eBaySearch.AmazonItemSearch;
+//using eBaySearch.AmazonItemSearch.ItemSearch;
+
 
 
 namespace eBaySearch.Controllers
 {
     public class HomeController : Controller
     {
+
+        // eBay ID's
         public static string appID = "BrianWal-f6d8-43f7-80f0-854c2a33aded";
         public static string findingServerAddress = "http://svcs.ebay.com/services/search/FindingService/v1?&sortOrder=PriceShippingLowest";
         public ClientConfig config = new ClientConfig(appID, findingServerAddress);
 
+        // Amazon ID's
+        private const string accessKeyId = "AKIAJWW53CVJBZYEL2UQ";
+        private const string secretKey = "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";
+
         [HttpPost]
         public ActionResult Index(string Id)
         {
-
+            // create a eBay client
             config.GlobalId = "EBAY-IE"; //use Irish eBay website (www.eBay.ie)
             FindingServicePortTypeClient client = FindingServiceClientFactory.getServiceClient(config);
 
@@ -64,15 +78,6 @@ namespace eBaySearch.Controllers
                 // Call the api
                 FindItemsAdvancedResponse response = client.findItemsAdvanced(request);
 
-                /* using (SqlConnection oConn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
-                 {
-
-                     SqlCommand cmd = new SqlCommand();
-                     cmd.CommandText = "INSERT INTO Searches(SearchText) VALUES(@SearchText, @PhoneNo, @Address)";
-                     cmd.CommandType = CommandType.Text;
-                     cmd.Parameters.AddWithValue("@SearchText", Id);
-                     cmd.Connection = oConn;
-                 }*/
                 using (SqlConnection oConn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
                 {
                     string insertSearch = "INSERT into searches (SearchTest, NoOfTimesSearched) VALUES (@SearchTest,@NoOfTimesSearched)";
@@ -87,15 +92,12 @@ namespace eBaySearch.Controllers
                     }
                 }
 
-
                 // Show output
                 if (response.searchResult != null && response.searchResult.item != null)
                 {
                     items = response.searchResult.item;
                     ViewBag.resultcount = response.searchResult.count;
                     ViewBag.totalitems = response.paginationOutput.totalEntries;
-
-
 
                     return View(items);
                 }
@@ -131,44 +133,6 @@ namespace eBaySearch.Controllers
             return View();
         }
 
-        /* public ActionResult SellerItems(string Id)
-         {
-             FindingServicePortTypeClient client = FindingServiceClientFactory.getServiceClient(config);
-             ViewBag.Seller = Id;
-             SearchItem[] items = null;
-             try
-             {
-                 // Create request object
-               FindItemsAdvancedRequest  request = new FindItemsAdvancedRequest();
-
-                 ItemFilter[] ifilter = { new ItemFilter { name = ItemFilterType.Seller, value = new string[] { Id } } };
-                 request.itemFilter = ifilter;
-
-                 PaginationInput pi = new PaginationInput();
-                 pi.entriesPerPage = 105;
-                 pi.entriesPerPageSpecified = true;
-                 request.paginationInput = pi;
-
-                 // Call the service
-                 FindItemsAdvancedResponse response = client.findItemsAdvanced(request);
-
-                 // Show output
-                 if (response.searchResult != null && response.searchResult.item != null)
-                 {
-                     items = response.searchResult.item;
-                     ViewBag.resultcount = response.searchResult.count;
-                     ViewBag.totalitems = response.paginationOutput.totalEntries;
-                     ViewBag.location = items[0].location;
-                     return View(items);
-                 }
-
-             }
-             catch (Exception ex)
-             {
-                 var errorText = ex.Message;
-             }
-
-             return View();
-         }*/
+ 
     }
 }
