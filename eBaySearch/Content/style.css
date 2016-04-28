@@ -10,7 +10,9 @@ table.tablesorter {
     table.tablesorter thead tr th, table.tablesorter tfoot tr th {
         border: 1px solid #FFF;
         font-size: 12pt;
-        padding: 4px;
+    }
+        .header:hover {
+        color:#1A803F;
     }
 
     table.tablesorter thead tr .header {
@@ -18,7 +20,7 @@ table.tablesorter {
         background-repeat: no-repeat;
         background-position: center right;
         cursor: pointer;
-        background-color: #2D49B7;
+        background-color: #3652cd;
     }
 
     table.tablesorter tbody td {
@@ -36,5 +38,5 @@ table.tablesorter {
     }
 
     table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
-        background-color: #2D49B7;
+        background-color: #3652cd;
     }

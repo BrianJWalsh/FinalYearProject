@@ -31,8 +31,6 @@ namespace eBaySearch.Controllers
         public ClientConfig config = new ClientConfig(appID, findingServerAddress);
 
         // Amazon ID's
-        private const string accessKeyId = "AKIAJWW53CVJBZYEL2UQ";
-        private const string secretKey = "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";
 
         [HttpPost]
         public ActionResult Index(string Id)
@@ -70,7 +68,7 @@ namespace eBaySearch.Controllers
                 PaginationInput PaginationInput = new PaginationInput();
                 //PaginationInput.totalNumberOfPages = 5;
                 PaginationInput.entriesPerPageSpecified = true;
-                PaginationInput.entriesPerPage = 250;
+                PaginationInput.entriesPerPage = 100;
                 PaginationInput.pageNumberSpecified = true;
                 PaginationInput.pageNumber = 10;
                 request.paginationInput = PaginationInput;
@@ -96,10 +94,11 @@ namespace eBaySearch.Controllers
                 if (response.searchResult != null && response.searchResult.item != null)
                 {
                     items = response.searchResult.item;
-                    ViewBag.resultcount = response.searchResult.count;
-                    ViewBag.totalitems = response.paginationOutput.totalEntries;
-
+                    ViewBag.noResultsMsg = "";
                     return View(items);
+                }
+                else {
+                    ViewBag.noResultsMsg = "No Results. Please try another search";
                 }
 
                 //
@@ -133,6 +132,6 @@ namespace eBaySearch.Controllers
             return View();
         }
 
- 
+
     }
 }

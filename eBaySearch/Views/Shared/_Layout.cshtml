@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
@@ -10,12 +11,15 @@
     <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.tablesorter.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Display.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/highcharts.origin.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/highcharts.js")" type="text/javascript"></script>
 </head>
 <body>
     <div class="page">
 
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -38,7 +42,7 @@
         <div id="main" class="col-md-12">
             @RenderBody()
             <hr />
-            <footer>
+            <footer class="text-center">
                 <p>@DateTime.Now.Year - Fashion Compare</p>
             </footer>
         </div>

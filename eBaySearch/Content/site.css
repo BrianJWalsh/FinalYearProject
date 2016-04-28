@@ -29,16 +29,16 @@ body {
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 320px;
 }
 
-/*.logo*/ {
+/*.logo {
     background: url(../Content/Images/logo.png) no-repeat top left;
     display: block;
     width: 700px;
     height: 200px;
-    text-indent: -9999px; /* hides the link text */
-}
+    text-indent: -9999px; hides the link text
+}*/
 
 body:not(.full-body) {
     background-image: url('http://i.imgur.com/12mMcvF.png?1');
@@ -49,6 +49,17 @@ body:not(.full-body) {
     margin-top: 10%;
 }
 
+/*For mobiles*/
+@media screen and (max-width: 500px) {
+    #main {
+        margin-top: 20%;
+    }
+
+    .Search .btn {
+        height: 68px;
+        font-size: 20pt;
+    }
+}
 
 .website-heading {
     font-size: 700%;
@@ -70,6 +81,18 @@ body:not(.full-body) {
     margin: 0% 0;
 }
 
+.highcharts-legend-item g:nth-child(1){
+    display:none;
+}
+
+#searchResults td:nth-child(2) {
+    width: 30%;
+}
+
+#cheapestItemTable td:nth-child(5) {
+    width: 8%;
+}
+
 #cheapestItemTable {
     font-size: 150%;
 }
@@ -78,6 +101,45 @@ body:not(.full-body) {
         color: #187e3d;
     }
 
-.validation-summary-errors li{
-    color:red;
+#avgPrice {
+     font-weight: bold;
+}
+
+#noResultMsg {
+    font-size: 150%;
+    margin-bottom: 10px;
+    color: #e8798d;
+}
+
+validation-summary-errors
+,.validation-summary-errors li {
+    color: #e8798d;
+}
+
+.aboutContent {
+    margin-bottom: 5%;
+    padding: 10px;
+    border: solid 1px;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #262626;
+}
+
+.field-validation-error {
+    color: #DF4561;
+}
+
+.register-group,
+#registerBtn {
+    margin-top:10px;
+}
+
+#picOfMe {
+    float: right;
+    border-radius: 60px;
+}
+
+.highcharts-legend-item text,
+.highcharts-legend-item path  {
+    color: red !important;
 }

@@ -3,58 +3,63 @@
         ViewBag.Title = "Search eBay";
     }
     <h1 style="text-align:center">
-        eBay Search
-        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
-        {
-
-            <div class="row">
-                <div class="col-lg-8 col-lg-push-2">
-                    <div class="input-group Search">
-                        <input id="Id" class="form-control Search" name="Id" type="text" maxlength="150" value="@ViewBag.Message" />
-                        <span class="input-group-btn">
-                            <input class="btn-primary btn searchButton" name="SearchButton" type="submit" value="Go!" onclick="myFunction" /><a href="#" onclick="$('#Id').val('')"> Clear</a>
-                        </span>
-                    </div><!-- /input-group -->
-                </div>
-            </div>
-
-        }
+        Find the cheapest items on eBay's marketplace
     </h1>
+    <h2 style="text-align:center">Enter the item in the text box below</h2>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-push-2">
+                <div class="input-group Search">
+                    <input id="Id" class="form-control Search" name="Id" type="text" maxlength="150" placeholder="Enter search..."/>
+                    <span class="input-group-btn">
+                        <input class="btn-primary btn searchButton" name="SearchButton" type="submit" value="Go!" /><a href="#" onclick="$('#Id').val('')"> Clear</a>
+                    </span>
+                </div><!-- /input-group -->
+            </div>
+        </div>
+
+    }
+
 
     @if (Model != null)
     {
         <text>
-                      <div id="avgPriceMessage" class="col-md-12">
-                          <h3>The average price for @ViewBag.Message is <span id="avgPrice"></span></h3>
-                      </div>
-                      <div class="col-md-12">
-                          <h2>This is the cheapest item of your search</h2>
-                          <div id="" class="table-responsive">
-                              <table id="cheapestItemTable" class="table table-bordered">
-                                  <thead>
-                                      <tr>
-                                          <th>Item</th>
-                                          <th>Item Description</th>
-                                          <th>Category</th>
-                                          <th>Location</th>
-                                          <th>Price</th>
-                                          <th>Shipping</th>
-                                      </tr>
-                              </table>
+            <div id="avgPriceMessage" class="col-md-12 text-center">
+                <h2>The average price for @ViewBag.Message is <span id="avgPrice"></span></h2>
+            </div>
+            <div class="col-md-12">
+                <h2>This is the cheapest item of your search</h2>
+                <div id="" class="table-responsive">
+                    <table id="cheapestItemTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Item Description</th>
+                                <th>Category</th>
+                                <th>Location</th>
+                                <th>Price</th>
+                                <th>Shipping</th>
+                                <th>Total Price</th>
+                            </tr>
+                    </table>
 
-                          </div>
-                      </div>
+                </div>
+            </div>
 
             <div class="col-md-12 table-responsive">
-                <table id="searchResults" class="table table-bordered tablesorter">
+                <table id="searchResults" class="table table-bordered tablesorter highchart" data-graph-container-before="1" data-graph-type="line">
+                    <caption> Price Results for @ViewBag.Message</caption>
                     <thead>
                         <tr>
-                            <th>Item</th>
-                            <th>Item Description</th>
-                            <th>Category</th>
-                            <th>Location</th>
+                            <th data-graph-hidden="1">Item</th>
+                            <th data-graph-hidden="1">Item Description</th>
+                            <th data-graph-hidden="1">Category</th>
+                            <th data-graph-hidden="1">Location</th>
                             <th>Price</th>
-                            <th>Shipping</th>
+                            <th data-graph-type="area">Shipping</th>
+                            <th data-graph-hidden="1">Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,21 +81,19 @@
                                         @Html.DisplayFor(modelItem => item.location)
                                     </td>
                                     <td class="price">
-                                        £@Html.DisplayFor(modelItem => item.sellingStatus.currentPrice.Value)
+                                        @Html.DisplayFor(modelItem => item.sellingStatus.currentPrice.Value)
                                     </td>
                                     <td class="shippingPrice">
                                         @{var shippingCost = @Html.DisplayFor(modelItem => item.shippingInfo.shippingServiceCost.Value);
                                             var originalCost = @Html.DisplayFor(modelItem => item.sellingStatus.currentPrice.Value);
                                             //var test = shippingCost.toString();
                                         }
-                                        £@Html.DisplayFor(modelItem => item.shippingInfo.shippingServiceCost.Value)
+                                        @Html.DisplayFor(modelItem => item.shippingInfo.shippingServiceCost.Value)
 
                                     </td>
+                                    <td class="totalPrice"></td>
 
-                                    @*   @foreach (var price in Model.GroupBy(i => i.sellingStatus.currentPrice.Value).OrderByDescending(i => i.Count()))
-                                        {
 
-                                        }*@
                                 </tr>
                                                 }
 
@@ -101,15 +104,5 @@
             </div>
 
         </text>
-
                                             }
-                                            @*If no items are found inform user*@
-
-                                            @{
-                                                var result = Request["SearchButton"];
-                                            }
-                                            @if (Model == null)
-                                            {
-                                                <div id="noResult">No result</div>
-                                            }
-
+                                            else { <p id="noResultMsg" class="text-center">@ViewBag.noResultsMsg</p> }
