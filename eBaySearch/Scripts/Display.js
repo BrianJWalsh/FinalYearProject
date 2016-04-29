@@ -6,7 +6,7 @@
     $("#cheapestItemTable").append(cheapestItem);
     calculateAvgPrice();
     calculateTotalPrice();
-
+ 
     // $('table.highchart').highchartTable();
     $('table.highchart')
                    .bind('highchartTable.beforeRender', function (event, highChartConfig) {
@@ -31,9 +31,7 @@
     $('.price').prepend('£');
     $('.totalPrice').prepend('£');
     $('.highcharts-yaxis-labels text').prepend('£');
-    $('.totalPrice').toFixed(2);
-    $('.totalPrice').trunc(5);
-   
+
 });
 
 function calculateAvgPrice() {

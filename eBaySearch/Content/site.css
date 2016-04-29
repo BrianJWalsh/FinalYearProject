@@ -141,5 +141,6 @@ validation-summary-errors
 
 .highcharts-legend-item text,
 .highcharts-legend-item path  {
-    color: red !important;
+    fill: #DF4561 !important;
 }
+

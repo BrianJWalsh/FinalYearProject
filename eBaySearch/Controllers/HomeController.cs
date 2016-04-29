@@ -97,9 +97,15 @@ namespace eBaySearch.Controllers
                     ViewBag.noResultsMsg = "";
                     return View(items);
                 }
-                else {
+                else if (Id.Length == 0)
+                {
+                    ViewBag.noResultsMsg = "No item entered. Please enter an item to search and try again";
+                }
+                else if (response.searchResult == null || response.searchResult.item == null)
+                {
                     ViewBag.noResultsMsg = "No Results. Please try another search";
                 }
+
 
                 //
                 // noResult.inn
