@@ -27,8 +27,8 @@ namespace eBaySearch.Controllers
 
         // eBay ID's
         public static string appID = "BrianWal-f6d8-43f7-80f0-854c2a33aded";
-        public static string findingServerAddress = "http://svcs.ebay.com/services/search/FindingService/v1?&sortOrder=PriceShippingLowest";
-        public ClientConfig config = new ClientConfig(appID, findingServerAddress);
+        public static string serverAddress = "http://svcs.ebay.com/services/search/FindingService/v1?&sortOrder=PriceShippingLowest";
+        public ClientConfig config = new ClientConfig(appID, serverAddress);
 
         // Amazon ID's
 
@@ -75,20 +75,6 @@ namespace eBaySearch.Controllers
 
                 // Call the api
                 FindItemsAdvancedResponse response = client.findItemsAdvanced(request);
-
-                using (SqlConnection oConn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
-                {
-                    string insertSearch = "INSERT into searches (SearchTest, NoOfTimesSearched) VALUES (@SearchTest,@NoOfTimesSearched)";
-
-                    using (SqlCommand queryinsertSearch = new SqlCommand(insertSearch))
-                    {
-                        queryinsertSearch.Connection = oConn;
-                        queryinsertSearch.Parameters.Add("@SearchTest", SqlDbType.VarChar, 30).Value = Id;
-                        queryinsertSearch.Parameters.Add("@NoOfTimesSearched", SqlDbType.Int, 30).Value = 1;
-                        oConn.Open();
-                        oConn.Close();
-                    }
-                }
 
                 // Show output
                 if (response.searchResult != null && response.searchResult.item != null)
