@@ -32,13 +32,9 @@ textarea {
     max-width: 320px;
 }
 
-/*.logo {
-    background: url(../Content/Images/logo.png) no-repeat top left;
-    display: block;
-    width: 700px;
-    height: 200px;
-    text-indent: -9999px; hides the link text
-}*/
+.logo {
+    line-height:35px;
+}
 
 body:not(.full-body) {
     background-image: url('http://i.imgur.com/12mMcvF.png?1');
@@ -86,7 +82,7 @@ body:not(.full-body) {
 }
 
 .website-heading {
-    font-size: 700%;
+    font-size: 750%;
 }
 
 
@@ -125,8 +121,9 @@ body:not(.full-body) {
     color: #e8798d;
 }
 
-validation-summary-errors, .validation-summary-errors li {
+.validation-summary-errors, .validation-summary-errors li {
     color: #e8798d;
+    text-align:center;
 }
 
 .aboutContent {

@@ -14,9 +14,6 @@ using eBaySearch.Finding;
 using eBaySearch.Services.Common;
 using eBaySearch.Services;
 
-//Amazon service reference
-using eBaySearch.AmazonItemSearch;
-//using eBaySearch.AmazonItemSearch.ItemSearch;
 
 
 
@@ -30,7 +27,6 @@ namespace eBaySearch.Controllers
         public static string serverAddress = "http://svcs.ebay.com/services/search/FindingService/v1?&sortOrder=PriceShippingLowest";
         public ClientConfig config = new ClientConfig(appID, serverAddress);
 
-        // Amazon ID's
 
         [HttpPost]
         public ActionResult Index(string Id)
@@ -62,7 +58,6 @@ namespace eBaySearch.Controllers
                 //request.sortOrderSpecified = true;
                 OutputSelectorType[] outputs = { OutputSelectorType.SellerInfo };
                 request.outputSelector = outputs;
-                //request.categoryId = new string[] {"#11450"};
 
 
                 PaginationInput PaginationInput = new PaginationInput();
@@ -93,9 +88,6 @@ namespace eBaySearch.Controllers
                 }
 
 
-                //
-                // noResult.inn
-
             }
             catch (Exception ex)
             {
@@ -112,7 +104,6 @@ namespace eBaySearch.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "TShirt";
             return View();
         }
 

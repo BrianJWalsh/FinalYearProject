@@ -119,6 +119,7 @@
     <Content Include="Content\bg.gif" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\desc.gif" />
+    <Content Include="Content\favicon.ico" />
     <Content Include="Content\me.png" />
     <Content Include="Content\style.css" />
     <Content Include="Content\site.css" />
@@ -293,7 +294,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
