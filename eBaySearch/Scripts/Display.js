@@ -1,13 +1,12 @@
 ﻿$(document).ready(function () {
+
     $("#searchResults").tablesorter({ sortList: [[0, 0], [4, 0]] });
-    // var cheapestItem = "<table>";
     var cheapestItem = $("#searchResults tbody tr:first-child");
-    // cheapestItem += "</table>"
     $("#cheapestItemTable").append(cheapestItem);
     calculateAvgPrice();
     calculateTotalPrice();
- 
-    // $('table.highchart').highchartTable();
+
+    // add chart and style it
     $('table.highchart')
                    .bind('highchartTable.beforeRender', function (event, highChartConfig) {
                        highChartConfig.chart.backgroundColor = '#262626';
@@ -41,9 +40,6 @@ function calculateAvgPrice() {
         var numItems = $('.price').length;
         parseFloat(numItems);
         var value = $(this).text();
-        // $('.totalPrice').prepend(value);
-
-        //value = value;
 
         // add only if the value is number
         if (!isNaN(value) && value.length != 0) {
@@ -55,7 +51,6 @@ function calculateAvgPrice() {
         calculatePrice = calculatePrice.toFixed(2);
         document.getElementById("avgPrice").innerHTML = "£" + calculatePrice;
     });
-    //
 
 }
 //get total price: add price item + shipping-> add it to totalPrice cell
@@ -63,9 +58,7 @@ function calculateTotalPrice() {
     $(" table tbody tr").each(function () {
 
         var price = $(this).children('td').slice(4).text();
-        //alert(price);
         var shippingPrice = $(this).children('td').slice(5).text();
-        // var total = price + shippingPrice;
         var ParsPrice = parseFloat(price);
         var ParsShippingPrice = parseFloat(shippingPrice);
         var totalPrice = $(this).children('.totalPrice');
