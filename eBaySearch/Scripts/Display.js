@@ -4,7 +4,6 @@
     var cheapestItem = $("#searchResults tbody tr:first-child");
     $("#cheapestItemTable").append(cheapestItem);
     calculateAvgPrice();
-    calculateTotalPrice();
 
     // add chart and style it
     $('table.highchart')
@@ -25,13 +24,45 @@
                    })
                    .highchartTable();
 
+    calculateTotalPrice();
 
+    $('.highcharts-yaxis-labels text').prepend('£');
+    $('.totalPrice').prepend('£');
     $('.shippingPrice').prepend('£');
     $('.price').prepend('£');
-    $('.totalPrice').prepend('£');
-    $('.highcharts-yaxis-labels text').prepend('£');
-
 });
+
+//better responsive design for mobile viewers
+window.onload = function () {
+
+    $(window).resize(function () {
+        if ($(window).width() < 500) {
+
+            $('.mobile-information').append("<h3>Tap image to reveal more information about the item</<h3>")
+
+            $('td:nth-child(n+3)').hide();
+            $('th:nth-child(n+3)').hide();
+            $('td:nth-child(7)').show();
+            $('th:nth-child(7)').show();
+
+            $(".table").on("click", "td", function () {
+
+                $('td').show("slow");
+                $('th').show("slow");
+            });
+
+            $('#searchResults td:nth-child(odd)').css('width', '20px');
+            //$('td').css('padding-right', '20px');
+
+        }
+        else {
+
+
+        }
+    }).resize();
+
+}
+
 
 function calculateAvgPrice() {
     var sum = 0;
@@ -56,14 +87,22 @@ function calculateAvgPrice() {
 //get total price: add price item + shipping-> add it to totalPrice cell
 function calculateTotalPrice() {
     $(" table tbody tr").each(function () {
-
+        var price = 0;
         var price = $(this).children('td').slice(4).text();
         var shippingPrice = $(this).children('td').slice(5).text();
         var ParsPrice = parseFloat(price);
         var ParsShippingPrice = parseFloat(shippingPrice);
         var totalPrice = $(this).children('.totalPrice');
+        if (!isNaN(ParsShippingPrice) && ParsShippingPrice.length != 0) {
 
-        totalPrice.append(ParsPrice + ParsShippingPrice);
-        totalPrice = parseFloat(totalPrice).toFixed(2);
+            totalPrice.append(ParsPrice + ParsShippingPrice);
+        }
+        if ($(this).children('td').slice(6).text() < 6) {
+            //var actPrice = $(this).children('td').slice(6).text();
+            //$(this).children('td').slice(6).text() = parseFloat($(this).children('td').slice(6).text());
+        }
+
+
+
     });
 }

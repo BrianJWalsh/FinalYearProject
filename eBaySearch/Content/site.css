@@ -56,6 +56,18 @@ body:not(.full-body) {
     max-width: 100% !important;
 }
 
+#searchResults td:nth-child(1) {
+    width: 12%;
+}
+
+#searchResults td:nth-child(2) {
+    width: 25%;
+}
+
+#searchResults td:nth-child(7) {
+    width: 8%;
+}
+
 /*For mobiles*/
 @media screen and (max-width: 500px) {
     #main {
@@ -79,6 +91,10 @@ body:not(.full-body) {
         font-size: 22pt;
         line-height: 22px;
     }
+
+    #searchResults td:nth-child(2) {
+        width: 20%;
+    }
 }
 
 .website-heading {
@@ -95,9 +111,6 @@ body:not(.full-body) {
     display: none;
 }
 
-#searchResults td:nth-child(2) {
-    width: 30%;
-}
 
 #cheapestItemTable td:nth-child(5) {
     width: 8%;
