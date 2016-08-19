@@ -4,7 +4,7 @@
     var cheapestItem = $("#searchResults tbody tr:first-child");
     $("#cheapestItemTable").append(cheapestItem);
     calculateAvgPrice();
-
+    calculateTotalPrice();
     // add chart and style it
     $('table.highchart')
                    .bind('highchartTable.beforeRender', function (event, highChartConfig) {
@@ -24,21 +24,32 @@
                    })
                    .highchartTable();
 
-    calculateTotalPrice();
 
     $('.highcharts-yaxis-labels text').prepend('£');
     $('.totalPrice').prepend('£');
     $('.shippingPrice').prepend('£');
     $('.price').prepend('£');
+
+    
+    
 });
 
 //better responsive design for mobile viewers
+//if the window is open on a device with a screen smaller than 500px display the information message
 window.onload = function () {
+
+
+    if ($(window).width() < 500) {
+
+        $('.mobile-information').append("<h3>Tap image to reveal more information about the item</<h3>")
+    }
+    else {
+        $('.mobile-information').empty();
+
+    }
 
     $(window).resize(function () {
         if ($(window).width() < 500) {
-
-            $('.mobile-information').append("<h3>Tap image to reveal more information about the item</<h3>")
 
             $('td:nth-child(n+3)').hide();
             $('th:nth-child(n+3)').hide();
@@ -47,8 +58,8 @@ window.onload = function () {
 
             $(".table").on("click", "td", function () {
 
-                $('td').show("slow");
-                $('th').show("slow");
+                $('td').show("fast");
+                $('th').show("fast");
             });
 
             $('#searchResults td:nth-child(odd)').css('width', '20px');
@@ -56,7 +67,7 @@ window.onload = function () {
 
         }
         else {
-
+            $('.mobile-information').empty();
 
         }
     }).resize();
@@ -95,13 +106,12 @@ function calculateTotalPrice() {
         var totalPrice = $(this).children('.totalPrice');
         if (!isNaN(ParsShippingPrice) && ParsShippingPrice.length != 0) {
 
-            totalPrice.append(ParsPrice + ParsShippingPrice);
+            totalPrice.append((ParsPrice + ParsShippingPrice));
         }
         if ($(this).children('td').slice(6).text() < 6) {
             //var actPrice = $(this).children('td').slice(6).text();
             //$(this).children('td').slice(6).text() = parseFloat($(this).children('td').slice(6).text());
         }
-
 
 
     });

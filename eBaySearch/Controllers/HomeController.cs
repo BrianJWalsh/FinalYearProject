@@ -23,8 +23,8 @@ namespace eBaySearch.Controllers
     {
 
         // eBay ID's
-        public static string appID = "BrianWal-f6d8-43f7-80f0-854c2a33aded";
-        public static string serverAddress = "http://svcs.ebay.com/services/search/FindingService/v1?&sortOrder=PriceShippingLowest";
+        public static string appID = "";
+        public static string serverAddress = "";
         public ClientConfig config = new ClientConfig(appID, serverAddress);
 
 
